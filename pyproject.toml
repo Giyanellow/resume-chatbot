@@ -1,7 +1,7 @@
 [project]
-name = "gian-website-chatbot"
+name = "resume-chatbot"
 version = "0.1.0"
-description = "Add your description here"
+description = "A resume chatbot intended to be used for personal websites. Intended to be run with self-hosted LLMs"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -21,6 +21,4 @@ autoSearchPaths = true
 autoImportCompletions = true
 
 [dependency-groups]
-dev = [
-    "ruff>=0.14.13",
-]
+dev = ["ruff>=0.14.13"]
