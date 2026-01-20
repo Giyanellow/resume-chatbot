@@ -1,0 +1,43 @@
+services:
+  # backend:
+  #   # Uncomment and configure based on your needs:
+  #   # build: ./backend
+  #   # image: your-backend-image:latest
+  #   container_name: backend
+  #   # ports:
+  #   #   - "8000:8000"
+  #   # environment:
+  #   #   - OLLAMA_HOST=http://ollama:11434
+  #   # volumes:
+  #   #   - ./backend:/app
+  #   # command: your-command-here
+  #   networks:
+  #     - app-network
+  #   depends_on:
+  #     - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+      - ./ollama-entrypoint.sh:/entrypoint.sh
+    networks:
+      - app-network
+    entrypoint: ["/bin/bash", "/entrypoint.sh"]
+    # deploy:
+    #    resources:
+    #      reservations:
+    #        devices:
+    #          - driver: nvidia
+    #            count: all
+    #            capabilities: [gpu]
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  ollama-data:
