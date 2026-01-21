@@ -23,10 +23,12 @@ services:
       - "11434:11434"
     volumes:
       - ollama-data:/root/.ollama
-      - ./ollama-entrypoint.sh:/entrypoint.sh
+      - ./scripts/ollama-init.sh:/ollama-init.sh
+    environment:
+      - MODEL_NAME=${MODEL_NAME:-granite3.1-moe:1b}
     networks:
       - app-network
-    entrypoint: ["/bin/bash", "/entrypoint.sh"]
+    entrypoint: ["/bin/bash", "/ollama-init.sh"]
     # deploy:
     #    resources:
     #      reservations:
